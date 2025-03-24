@@ -1,0 +1,39 @@
+tuple_1 = ("GradStudent(sue)",)
+tuple_2 = ("~GradStudent(x)", "Student(x)")
+tuple_3 = ("~Student(x)", "HardWorker(x)")
+tuple_4 = ("~HardWorker(sue)",)
+
+myset = {tuple_1: 1, tuple_2: 2, tuple_3: 3, tuple_4: 4}
+
+
+tuple_1 = ("A(tony)",)
+tuple_2 = ("A(mike)",)
+tuple_3 = ("A(john)",)
+tuple_4 = ("L(tony,rain)",)
+tuple_5 = ("L(tony,snow)",)
+tuple_6 = ("~A(x)","S(x)","C(x)")
+tuple_7 = ("~C(y)","~L(y,rain)")
+tuple_8 = ("L(z,snow)","~S(z)")
+tuple_9 = ("~L(tony,u)","~L(mike,u)")
+tuple_10 = ("L(tony,v)","L(mike,v)")
+tuple_11 = ("~A(w)","~C(w)","S(w)")
+
+
+myset = {tuple_1: 1, tuple_2: 2, tuple_3: 3, tuple_4: 4, tuple_5: 5, tuple_6: 6, tuple_7: 7, tuple_8: 8, tuple_9: 9, tuple_10: 10, tuple_11: 11}
+
+
+tuple_1 = ("On(tony,mike)",)
+tuple_2 = ("On(mike,john)",)
+tuple_3 = ("Green(tony)",)
+tuple_4 = ("~Green(john)",)
+tuple_5 = ("~On(x,y)","~Green(x)","Green(y)",)
+
+
+
+myset = {
+    tuple_1: 1,
+    tuple_2: 2,
+    tuple_3: 3,
+    tuple_4: 4,
+    tuple_5: 5,
+}
