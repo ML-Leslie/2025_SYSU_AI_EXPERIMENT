@@ -32,7 +32,6 @@ def manhattan(board):
 
 
 def linear_conflicts(board):
-    """计算线性冲突，每个冲突增加2步移动代价"""
     conflicts = 0
 
     # 计算行冲突
@@ -120,11 +119,13 @@ def A_star(init_board):
     visited = set()
     parent = {}
     parent[init_board] = None
+    moves = {}
+    moves[init_board] = 0
 
-    heapq.heappush(myheap, (0, 0, init_board))
+    heapq.heappush(myheap, (0, init_board))
 
     while myheap:
-        _, g, now_board = heapq.heappop(myheap)
+        _, now_board = heapq.heappop(myheap)
 
         # check_end_state
         if now_board == goal_tuple:
@@ -145,20 +146,15 @@ def A_star(init_board):
             gc.collect()
         # 生成下一层
         for next_board in generate_next_states(now_board):
-            if next_board in visited:
-                continue
-            new_g = abs(g) + 1  # 每次移动的代价为1
-            new_h = manhattan(next_board) + linear_conflicts(next_board)
-            new_f = new_g + new_h
+            new_g = moves[now_board] + 1 
+            if next_board not in moves or new_g < moves[next_board]:
+                moves[next_board] = new_g
+                new_h = manhattan(next_board) + linear_conflicts(next_board)
+                new_f = new_g + new_h
 
-            heapq.heappush(myheap, (new_f, -new_g, next_board))
-            parent[next_board] = now_board  # 记录父节点
+                heapq.heappush(myheap, (new_f, next_board))
+                parent[next_board] = now_board  # 记录父节点             
     return None
-
-
-
-
-
 
 
 def IDA_star(initial_board):
@@ -187,7 +183,7 @@ def IDA_star(initial_board):
         if now_board == goal_tuple:
             return (True,0)
         
-        MIN = float("inf")
+        min_value = float("inf")
         for next_board in generate_next_states(now_board):
             if next_board in visited:
                 continue
@@ -198,11 +194,11 @@ def IDA_star(initial_board):
             result = DFS(moves + 1, bound)
             if result[0]:
                 return (True,0)
-            MIN = min(MIN, result[1]) # 一轮结束了，记录这一轮最小的bound
+            min_value = min(min_value, result[1]) # 一轮结束了，记录这一轮最小的bound
             path.pop()
             parent.pop(next_board)  # 删除父节点记录
             visited.remove(next_board)
-        return (False,MIN)
+        return (False,min_value)
 
     while True:
         state, new_bound = DFS(0, bound)
@@ -256,7 +252,7 @@ if __name__ == "__main__":
         9,
         12,
     )
-    # 2s IDA：61，37s
+
     init_board_2 = (
         14,
         10,
@@ -275,7 +271,7 @@ if __name__ == "__main__":
         7,
         15,
     )
-    # kuai
+
     init_board_3 = (
         5,
         1,
@@ -294,7 +290,7 @@ if __name__ == "__main__":
         10,
         14,
     )
-    # 10s but 48 steps ?
+
     init_board_4 = (
         6,
         10,
@@ -313,7 +309,7 @@ if __name__ == "__main__":
         9,
         4,
     )
-    # 解不出来
+
     init_board_5 = (
         11,
         3,
@@ -332,7 +328,7 @@ if __name__ == "__main__":
         5,
         0,
     )
-    # IDA 966s
+
     init_board_6 = (
         0,
         5,
@@ -352,16 +348,16 @@ if __name__ == "__main__":
         3,
     )
 
-    for i in range(2, 3):
+    for i in range(6, 7):
         init_board = eval(f"init_board_{i}")
         print(f"\n初始状态 {i}:")
         print_board(init_board)
 
         
         # 使用A*算法求解
-        # print("\n正在使用A*算法求解...")
-        # result = A_star(init_board)
-        # print_all("A*", result)
+        print("\n正在使用A*算法求解...")
+        result = A_star(init_board)
+        print_all("A*", result)
 
         # 使用IDA*算法求解
         print("\n正在使用IDA*算法求解...")

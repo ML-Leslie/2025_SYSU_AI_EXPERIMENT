@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="1850" style="background-color:#181818;">
+  <style>
+    .terminal-text {
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 14px;
+      fill: white;
+      white-space: pre;
+    }
+  </style>
+  <text x="20" y="20" class="terminal-text">初始状态 1:</text>
+  <text x="20" y="40" class="terminal-text"> 1  2  4  8</text>
+  <text x="20" y="60" class="terminal-text"> 5  7 11 10</text>
+  <text x="20" y="80" class="terminal-text">13 15  0  3</text>
+  <text x="20" y="100" class="terminal-text">14  6  9 12</text>
+  <text x="20" y="120" class="terminal-text"></text>
+  <text x="20" y="140" class="terminal-text">正在使用A*算法求解...</text>
+  <text x="20" y="160" class="terminal-text">A*算法求解成功！</text>
+  <text x="20" y="180" class="terminal-text">路径长度: 22</text>
+  <text x="20" y="200" class="terminal-text">展开节点数: 70</text>
+  <text x="20" y="220" class="terminal-text">运行时间: 0.0秒</text>
+  <text x="20" y="240" class="terminal-text">路径： [15, 6, 9, 15, 11, 10, 3, 11, 10, 3, 8, 4, 3,</text>
+  <text x="20" y="260" class="terminal-text">7, 6, 9, 14, 13, 9, 10, 11, 12]</text>
+  <text x="20" y="280" class="terminal-text"></text>
+  <text x="20" y="300" class="terminal-text">初始状态 2:</text>
+  <text x="20" y="320" class="terminal-text">14 10  6  0</text>
+  <text x="20" y="340" class="terminal-text"> 4  9  1  8</text>
+  <text x="20" y="360" class="terminal-text"> 2  3  5 11</text>
+  <text x="20" y="380" class="terminal-text">12 13  7 15</text>
+  <text x="20" y="400" class="terminal-text"></text>
+  <text x="20" y="420" class="terminal-text">正在使用A*算法求解...</text>
+  <text x="20" y="440" class="terminal-text">A*算法求解成功！</text>
+  <text x="20" y="460" class="terminal-text">路径长度: 49</text>
+  <text x="20" y="480" class="terminal-text">展开节点数: 115628</text>
+  <text x="20" y="500" class="terminal-text">运行时间: 2.147430658340454秒</text>
+  <text x="20" y="520" class="terminal-text">路径： [6, 10, 9, 4, 14, 9, 4, 1, 10, 4, 1, 3, 2, 14,</text>
+  <text x="20" y="540" class="terminal-text">9, 1, 3, 2, 5, 11, 8, 6, 4, 3, 2, 5, 13, 12, 14, 13,</text>
+  <text x="20" y="560" class="terminal-text">12, 7, 11, 12, 7, 14, 13, 9, 5, 10, 6, 8, 12, 7,</text>
+  <text x="20" y="580" class="terminal-text">10, 6, 7, 11, 15]</text>
+  <text x="20" y="600" class="terminal-text"></text>
+  <text x="20" y="620" class="terminal-text">初始状态 3:</text>
+  <text x="20" y="640" class="terminal-text"> 5  1  3  4</text>
+  <text x="20" y="660" class="terminal-text"> 2  7  8 12</text>
+  <text x="20" y="680" class="terminal-text"> 9  6 11 15</text>
+  <text x="20" y="700" class="terminal-text"> 0 13 10 14</text>
+  <text x="20" y="720" class="terminal-text"></text>
+  <text x="20" y="740" class="terminal-text">正在使用A*算法求解...</text>
+  <text x="20" y="760" class="terminal-text">A*算法求解成功！</text>
+  <text x="20" y="780" class="terminal-text">路径长度: 15</text>
+  <text x="20" y="800" class="terminal-text">展开节点数: 15</text>
+  <text x="20" y="820" class="terminal-text">运行时间: 0.0秒</text>
+  <text x="20" y="840" class="terminal-text">路径： [13, 10, 14, 15, 12, 8, 7, 2, 5, 1, 2, 6, 10,</text>
+  <text x="20" y="860" class="terminal-text"> 14, 15]</text>
+  <text x="20" y="880" class="terminal-text"></text>
+  <text x="20" y="900" class="terminal-text">初始状态 4:</text>
+  <text x="20" y="920" class="terminal-text"> 6 10  3 15</text>
+  <text x="20" y="940" class="terminal-text">14  8  7 11</text>
+  <text x="20" y="960" class="terminal-text"> 5  1  0  2</text>
+  <text x="20" y="980" class="terminal-text">13 12  9  4</text>
+  <text x="20" y="1000" class="terminal-text"></text>
+  <text x="20" y="1020" class="terminal-text">正在使用A*算法求解...</text>
+  <text x="20" y="1040" class="terminal-text">A*算法求解成功！</text>
+  <text x="20" y="1060" class="terminal-text">路径长度: 48</text>
+  <text x="20" y="1080" class="terminal-text">展开节点数: 601064</text>
+  <text x="20" y="1100" class="terminal-text">运行时间: 10.857929468154907秒</text>
+  <text x="20" y="1120" class="terminal-text">路径： [9, 12, 13, 5, 1, 9, 7, 11, 2, 4, 12, 13, 9,</text>
+  <text x="20" y="1140" class="terminal-text">7, 11, 2, 15, 3, 2, 15, 4, 11, 15, 8, 14, 1, 5, 9,</text>
+  <text x="20" y="1160" class="terminal-text">13, 15, 7, 14, 10, 6, 1, 5, 9, 13, 14, 10, 6, 2,</text>
+  <text x="20" y="1180" class="terminal-text">3, 4, 8, 7, 11, 12]</text>
+  <text x="20" y="1200" class="terminal-text"></text>
+  <text x="20" y="1220" class="terminal-text">初始状态 5:</text>
+  <text x="20" y="1240" class="terminal-text">11  3  1  7</text>
+  <text x="20" y="1260" class="terminal-text"> 4  6  8  2</text>
+  <text x="20" y="1280" class="terminal-text">15  9 10 13</text>
+  <text x="20" y="1300" class="terminal-text">14 12  5  0</text>
+  <text x="20" y="1320" class="terminal-text"></text>
+  <text x="20" y="1340" class="terminal-text">正在使用A*算法求解...</text>
+  <text x="20" y="1360" class="terminal-text">A*算法求解成功！</text>
+  <text x="20" y="1380" class="terminal-text">路径长度: 56</text>
+  <text x="20" y="1400" class="terminal-text">展开节点数: 2510669</text>
+  <text x="20" y="1420" class="terminal-text">运行时间: 104.49152445793152秒</text>
+  <text x="20" y="1440" class="terminal-text">路径： [13, 10, 8, 6, 9, 12, 5, 13, 10, 8, 12, 15,</text>
+  <text x="20" y="1460" class="terminal-text">14, 5, 13, 12, 15, 14, 5, 13, 14, 9, 4, 11, 3, 1,</text>
+  <text x="20" y="1480" class="terminal-text">6, 4, 11, 3, 1, 6, 4, 2, 8, 10, 12, 15, 10, 8, 7,</text>
+  <text x="20" y="1500" class="terminal-text">4, 2, 11, 3, 5, 9, 10, 11, 3, 6, 2, 3, 7, 8, 12]</text>
+  <text x="20" y="1520" class="terminal-text"></text>
+  <text x="20" y="1540" class="terminal-text">初始状态 6:</text>
+  <text x="20" y="1560" class="terminal-text"> 0  5 15 14</text>
+  <text x="20" y="1580" class="terminal-text"> 7  9  6 13</text>
+  <text x="20" y="1600" class="terminal-text"> 1  2 12 10</text>
+  <text x="20" y="1620" class="terminal-text"> 8 11  4  3</text>
+  <text x="20" y="1640" class="terminal-text"></text>
+  <text x="20" y="1660" class="terminal-text">正在使用A*算法求解...</text>
+  <text x="20" y="1680" class="terminal-text">A*算法求解成功！</text>
+  <text x="20" y="1700" class="terminal-text">路径长度: 62</text>
+  <text x="20" y="1720" class="terminal-text">展开节点数: 5471665</text>
+  <text x="20" y="1740" class="terminal-text">运行时间: 95.29628300666809秒</text>
+  <text x="20" y="1760" class="terminal-text">路径： [7, 9, 2, 1, 9, 2, 5, 7, 2, 5, 1, 11, 8, 9,</text>
+  <text x="20" y="1780" class="terminal-text">5, 1, 6, 12, 10, 3, 4, 8, 11, 10, 12, 13, 3, 4, 8,</text>
+  <text x="20" y="1800" class="terminal-text">12, 13, 15, 14, 3, 4, 8, 12, 13, 15, 14, 7, 2, 1,</text>
+  <text x="20" y="1820" class="terminal-text">5, 10, 11, 13, 15, 14, 7, 3, 4, 8, 12, 15, 14,</text>
+  <text x="20" y="1840" class="terminal-text">11, 10, 9, 13, 14, 15]</text>
+</svg>

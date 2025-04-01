@@ -117,7 +117,7 @@ def A_star(init_board):
     global goal_tuple
     # 统计信息
     start_time = time.time()
-    expenfd_nodes = 0
+    expanded_nodes = 0
 
     # 采用堆进行排序
     myheap = []
@@ -139,20 +139,22 @@ def A_star(init_board):
             result = {
                 "path": path,
                 "path_len": len(path),
-                "expanded_nodes": expenfd_nodes,
+                "expanded_nodes": expanded_nodes,
                 "time": end_time - start_time,
             }
             return result
 
         visited.add(now_board)
-        expenfd_nodes += 1
+        expanded_nodes += 1
 
+        if expanded_nodes % 10000 == 0:
+            gc.collect()
         # 生成下一层
         for next_board in generate_next_states(now_board):
             if next_board in visited:
                 continue
             new_g = moves[now_board] + 1  # 每次移动的代价为1
-            new_h = manhattan(next_board) + linear_conflicts(next_board)
+            new_h = manhattan(next_board) # + linear_conflicts(next_board)
             new_f = new_g + new_h
 
             if next_board not in moves or new_g < moves[next_board]:
@@ -293,7 +295,7 @@ if __name__ == "__main__":
         3,
     )
 
-    for i in range(6, 7):
+    for i in range(5, 7):
         init_board = eval(f"init_board_{i}")
         print(f"\n初始状态 {i}:")
         print_board(init_board)
