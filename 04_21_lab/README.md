@@ -39,46 +39,45 @@
 - 每一层的神经元与下一层的神经元之间都有连接。设置**权重和偏置**来调整每个神经元的输出，然后通过**激活函数**进行非线性变换。
 - MLP 的训练过程使用**前向传播 + 反向传播**算法
   - **前向传播**：输入数据通过网络层层传递，计算出输出结果。
-  - **反向传播**：根据输出结果和真实标签计算损失函数，然后通过链式法则计算每个参数的梯度，更新参数。【梯度下降的公式为：$W = W - \eta \frac{\partial L}{\partial W}$，其中 $\eta$ 为学习率】
+  - **反向传播**：根据输出结果和真实标签计算损失函数，然后通过链式法则计算每个参数的梯度，更新参数。【梯度下降的公式为： $W = W - \eta \frac{\partial L}{\partial W}$ 其中 $\eta$ 为学习率】
 - 通过不断迭代更新参数，最小化损失函数，从而使模型更好地拟合训练数据。
 ##### （2）涉及到的一些函数
-- 假定网络为多层感知机，网络输出为 $\hat{y} = \text{MLP}(X_{\text{train}})$，其中 $X$ 为房子的特征，$\text{MLP}$ 为多层神经网络，$W$ 和 $b$ 为 $\text{MLP}$ 的参数，$\hat{y}$ 为预测的房价。
-- 激活函数选择为 $ReLU$，激活函数为：
-  $$
-  \text{ReLU}(x) = \max(0, x)
-  $$
+- 假定网络为多层感知机，网络输出为 $\hat{y} = \text{MLP}(X_{\text{train}})$，其中 $X$ 为房子的特征， $\text{MLP}$ 为多层神经网络， $W$ 和 $b$ 为 $\text{MLP}$ 的参数， $\hat{y}$ 为预测的房价。
+- 激活函数选择为 $ReLU$ ，激活函数为：
+```math
+\text{ReLU}(x) = \max(0, x)
+```
   - 其导数为：
-    $$
-    \text{ReLU}'(x) = \begin{cases}
-    1 & \text{if } x > 0 \\
-    0 & \text{if } x \leq 0
-    \end{cases}
-    $$
-- 设置损失函数为 $L_{\text{MSE}}$，利用 $He$ 方法初始化参数。
-  - 损失函数为：
-    $$
-    L_{\text{MSE}} = \frac{1}{m} \sum_{i=1}^{m} (y_i - \hat{y}_i)^2
-    $$
-  -  $He$ 方法初始化参数为：
-    $$
-    W \sim \mathcal{N}(0, \frac{2}{n_{\text{in}}})
-    $$ 
-       - 其中 $n_{\text{in}}$ 为输入层的神经元个数
-       - $W$ 服从一个均值为 $0$，方差为 $\frac{2}{n_{\text{in}}}$ 的正态分布，可以保证值在网络中不会被放大或缩小太快。
-       - $b$ 一开始**一般设置为 $0$**，在训练中， $b$ 的值可以很快训练出来，如果设置像 $W$ 的高斯分布，相当于人为加了“随机偏移”，这些偏移早期反而可能干扰梯度方向。
+```math
+\text{ReLU}'(x) = \begin{cases}
+1 & \text{if } x > 0 \\
+0 & \text{if } x \leq 0
+\end{cases}
+```
+- 设置损失函数为 $L_{\text{MSE}}$
+```math
+L_{\text{MSE}} = \frac{1}{m} \sum_{i=1}^{m} (y_i - \hat{y}_i)^2
+```
+-  $He$ 方法初始化参数为：
+    - 其中 $n_{\text{in}}$ 为输入层的神经元个数
+    - $W$ 服从一个均值为 $0$，方差为 $\frac{2}{n_{\text{in}}}$ 的正态分布，可以保证值在网络中不会被放大或缩小太快。
+    - $b$ 一开始**一般设置为 $0$**，在训练中， $b$ 的值可以很快训练出来，如果设置像 $W$ 的高斯分布，相当于人为加了“随机偏移”，这些偏移早期反而可能干扰梯度方向。
+```math
+W \sim \mathcal{N}(0, \frac{2}{n_{\text{in}}})
+``` 
 - 神经元的输出为：
-$$
+```math
 z = W \cdot X + b\\
 \hat{y} = \text{ReLU}(W \cdot X + b)
-$$
+```
 - 所以损失函数对 $W$ 的导数为：
-   $$ 
-   \frac{\partial L}{\partial W} = \frac{\partial L}{\partial z} \cdot \frac{\partial z}{\partial W}
-   $$
+ ```math 
+ \frac{\partial L}{\partial W} = \frac{\partial L}{\partial z} \cdot \frac{\partial z}{\partial W}
+ ```
 - 梯度下降法公式：
-    $$
+    ```math
     W = W - \eta \cdot \frac{\partial L}{\partial W}
-    $$
+    ```
 #### 2. 关键代码展示
 ##### 代码结构
 ```bash
@@ -274,29 +273,34 @@ houses_price_pred.py
             
         return results
     ```
-    - 再来看对 $W$ 求导的反向传播公式：
-    $$ 
-    \frac{\partial L}{\partial W} = \frac{\partial L}{\partial z} \cdot \frac{\partial z}{\partial W}
-    $$ 
-    那么在矩阵运算中，可以写成：
-    $$
-    \frac{\partial L}{\partial W} = \frac{\partial L}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial z} \cdot \frac{\partial z}{\partial W}\\
-    \space \\
-    = \frac{\partial L}{\partial \hat{y}} \cdot \text{ReLU}'(z) \cdot X
-    $$
-    这里的 $X$ 代表的是前一层的输出，$z$ 是当前层的线性组合（加权和与偏置）
-    - 对 $b$ 的求导公式为：
-    $$
-    \frac{\partial L}{\partial b} = \frac{\partial L}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial z} \cdot \frac{\partial z}{\partial b}\\
-    \space \\
-    = \frac{\partial L}{\partial \hat{y}} \cdot \text{ReLU}'(z) \cdot 1
-    $$
-    - 在代码实际计算中，输出层里的 $dW$ 计算方式和隐藏层不一样：
-      - 输出层由于线性输出，所以只要计算损失函数的导数 $\frac{\partial L}{\partial z}$ ，即  `dout = (cache['out' + str(L-1)] - Y.T) * (2/m)` 
-      - 隐藏层需要计算激活函数的导数，所以要乘上 `self.activation_derivative(cache['net' + str(i)])`，即 `dout = np.dot(self.weights[i+1].T, dout)  * self.activation_derivative(cache['net' + str(i)])`
-        - 这里括号里面的 `dout` 是右边一层的`out`求导值，计算出来的`dout`是当前层的`out`求导值
-        ![alt text](images/image.png)
-    - 至于 $db$ 为什么是 `np.sum(dout, axis=1, keepdims=True)`，`dout` 的列是样本数，行是神经元个数，`np.sum(dout, axis=1, keepdims=True)` 就是对每一行求和，得到每个神经元的偏置梯度，因为每一个样本都会对每一个神经元的偏置产生影响
+- 再来看对 $W$ 求导的反向传播公式：
+      
+```math 
+\frac{\partial L}{\partial W} = \frac{\partial L}{\partial z} \cdot \frac{\partial z}{\partial W}
+``` 
+
+- 那么在矩阵运算中，可以写成：(这里的 $X$ 代表的是前一层的输出， $z$ 是当前层的线性组合（加权和与偏置）)
+    
+$$
+\frac{\partial L}{\partial W} = \frac{\partial L}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial z} \cdot \frac{\partial z}{\partial W}\\
+\space \\
+= \frac{\partial L}{\partial \hat{y}} \cdot \text{ReLU}'(z) \cdot X
+$$
+
+- 对 $b$ 的求导公式为：
+
+$$
+\frac{\partial L}{\partial b} = \frac{\partial L}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial z} \cdot \frac{\partial z}{\partial b}\\
+\space \\
+= \frac{\partial L}{\partial \hat{y}} \cdot \text{ReLU}'(z) \cdot 1
+$$
+
+- 在代码实际计算中，输出层里的 $dW$ 计算方式和隐藏层不一样：
+  - 输出层由于线性输出，所以只要计算损失函数的导数 $\frac{\partial L}{\partial z}$ ，即  `dout = (cache['out' + str(L-1)] - Y.T) * (2/m)` 
+  - 隐藏层需要计算激活函数的导数，所以要乘上 `self.activation_derivative(cache['net' + str(i)])`，即 `dout = np.dot(self.weights[i+1].T, dout)  * self.activation_derivative(cache['net' + str(i)])`
+    - 这里括号里面的 `dout` 是右边一层的`out`求导值，计算出来的`dout`是当前层的`out`求导值
+    ![alt text](images/image.png)
+- 至于 $db$ 为什么是 `np.sum(dout, axis=1, keepdims=True)`，`dout` 的列是样本数，行是神经元个数，`np.sum(dout, axis=1, keepdims=True)` 就是对每一行求和，得到每个神经元的偏置梯度，因为每一个样本都会对每一个神经元的偏置产生影响
 - `main` 函数
     ```py
     def main():
