@@ -9,12 +9,14 @@ class Chess(pygame.sprite.Sprite):
     def __init__(self, screen, chess_name, row, col):
         super().__init__()
         self.screen = screen
-        # self.name = chess_name
+
+        # “队伍_名字”模式
         self.team = chess_name[0]  # 队伍（红方 r、黑方b）
         self.name = chess_name[2]  # 名字（炮p、马m等）
+
         self.image = pygame.image.load("images/" + chess_name + ".png")
-        self.top_left = (50 + col * 57, 50 + row * 57)
-        self.rect = self.image.get_rect()
+        self.top_left = (50 + col * 57, 50 + row * 57) # TODO：或许是屏幕坐标？
+        self.rect = self.image.get_rect() # 获取棋子图片的矩形区域
         self.rect.topleft = (50 + col * 57, 50 + row * 57)
         self.row, self.col = row, col
 

@@ -69,6 +69,7 @@ class ChessBoard(object):
                     self.chessboard_map[row][col] = None
 
     def get_chessboard_str_map(self):
+        """获取当前棋盘上所有棋子对象的字符串列表"""
         str_map = list()
         for row in range(10):
             line_map = list()
@@ -81,6 +82,7 @@ class ChessBoard(object):
         return str_map
 
     def set_chessboard_str_map(self, str_map):
+        """将字符串列表转换为棋子对象列表"""
         for row, line in enumerate(str_map):
             for col, chess_name in enumerate(line):
                 if chess_name:
